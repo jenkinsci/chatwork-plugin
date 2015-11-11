@@ -135,7 +135,7 @@ public class ChatworkPublisher extends Publisher {
   public boolean perform(AbstractBuild build, Launcher launcher, BuildListener listener) {
     this.build = build;
     this.listener = listener;
-    
+
     if(this.build.getResult() == Result.SUCCESS && !this.notifyOnSuccess) {
       println("skip post message because notifyOnSuccess is disabled");
       return true;
@@ -184,7 +184,7 @@ public class ChatworkPublisher extends Publisher {
 
   private String resolveMessage() {
     String jobResultMessage = getJobResultMessage(build.getResult());
-    
+
     if(StringUtils.isBlank(jobResultMessage)){
       String globalResultMessage = getDescriptor().getGlobalResultMessage(build.getResult());
       return resolve(globalResultMessage);
@@ -279,7 +279,7 @@ public class ChatworkPublisher extends Publisher {
       return message.toString();
     }
 
-    return null;
+    return "";
   }
 
   @Override
@@ -321,7 +321,7 @@ public class ChatworkPublisher extends Publisher {
     public String getProxyport() {
       return proxyport;
     }
-    
+
     private String globalSuccessMessage;
 
     private String globalFailureMessage;
@@ -379,7 +379,7 @@ public class ChatworkPublisher extends Publisher {
       save();
       return super.configure(req, formData);
     }
-    
+
     public String getGlobalResultMessage(Result result){
       if(result == Result.SUCCESS){
         return getGlobalSuccessMessage();

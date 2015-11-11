@@ -50,12 +50,12 @@ https://github.com/octocat/Hello-World/compare/master...topic
       ChatworkPublisher.analyzePayload(parameterDefinition) == expected
     }
 
-    def "When neither PullRequest nor compare, should return null"(){
+    def "When neither PullRequest nor compare, should return empty string"(){
       when:
       String parameterDefinition = readFixture("payload_empty.json")
 
       then:
-      ChatworkPublisher.analyzePayload(parameterDefinition) == null
+      ChatworkPublisher.analyzePayload(parameterDefinition) == ""
     }
   }
 
