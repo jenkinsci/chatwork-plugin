@@ -1,5 +1,12 @@
 # Change Log
 
+## [chatwork-1.0.4](https://github.com/jenkinsci/chatwork-plugin/tree/chatwork-1.0.4) (2015/11/11)
+[Full Changelog](https://github.com/jenkinsci/chatwork-plugin/compare/chatwork-1.0.3...chatwork-1.0.4)
+
+**Merged pull requests:**
+
+- fix bug causing null value exception [\#29](https://github.com/jenkinsci/chatwork-plugin/pull/29) ([owaranaidobby](https://github.com/owaranaidobby))
+
 ## [chatwork-1.0.3](https://github.com/jenkinsci/chatwork-plugin/tree/chatwork-1.0.3) (2015/10/07)
 [Full Changelog](https://github.com/jenkinsci/chatwork-plugin/compare/chatwork-1.0.2...chatwork-1.0.3)
 
