@@ -2,9 +2,10 @@ package com.vexus2.jenkins.chatwork.jenkinschatworkplugin.api;
 
 import org.apache.commons.lang.StringUtils;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
-public class RoomComparator implements Comparator<Room> {
+public class RoomComparator implements Comparator<Room>, Serializable {
   @Override
   public int compare(Room room1, Room room2) {
     // 1st sort key
