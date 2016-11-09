@@ -291,14 +291,6 @@ public class ChatworkPublisher extends Publisher {
     return BuildStepMonitor.BUILD;
   }
 
-  /**
-   * Descriptor for {@link ChatworkPublisher}. Used as a singleton.
-   * The class is marked as public so that it can be accessed from views.
-   * <p/>
-   * <p/>
-   * See <tt>src/main/resource/com.vexus2.jenkins.chatwork.jenkinschatworkplugin/ChatworkPublisher/*.jelly</tt>
-   * for the actual HTML fragment for the configuration screen.
-   */
   @Extension
   // This indicates to Jenkins that this is an implementation of an extension point.
   public static final class DescriptorImpl extends BuildStepDescriptor<Publisher> {
