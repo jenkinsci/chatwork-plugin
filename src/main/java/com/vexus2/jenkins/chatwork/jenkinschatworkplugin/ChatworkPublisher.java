@@ -254,9 +254,9 @@ public class ChatworkPublisher extends Publisher {
       String repositoryName = json.getJSONObject("repository").getString("name");
       String pusher = pullRequest.getJSONObject("user").getString("login");
 
-      StringBuilder message = new StringBuilder().append(String.format("%s created Pull Request into %s,\n", pusher, repositoryName));
-      message.append(String.format("\n%s", title));
-      message.append(String.format("\n%s", url));
+      StringBuilder message = new StringBuilder().append(String.format("%s created Pull Request into %s,%n", pusher, repositoryName));
+      message.append(String.format("%n%s", title));
+      message.append(String.format("%n%s", url));
 
       return message.toString();
 
@@ -265,16 +265,16 @@ public class ChatworkPublisher extends Publisher {
 
       String pusher = json.getJSONObject("pusher").getString("name");
       String repositoryName = json.getJSONObject("repository").getString("name");
-      StringBuilder message = new StringBuilder().append(String.format("%s pushed into %s,\n", pusher, repositoryName));
+      StringBuilder message = new StringBuilder().append(String.format("%s pushed into %s,%n", pusher, repositoryName));
 
       JSONArray commits = json.getJSONArray("commits");
       int size = commits.size();
       for (int i = 0; i < size; i++) {
         JSONObject value = (JSONObject) commits.get(i);
         String s = value.getString("message");
-        message.append(String.format("- %s\n", (s.length() > MAX_COMMIT_MESSAGE_LENGTH) ? s.substring(0, MAX_COMMIT_MESSAGE_LENGTH) + "..." : s));
+        message.append(String.format("- %s%n", (s.length() > MAX_COMMIT_MESSAGE_LENGTH) ? s.substring(0, MAX_COMMIT_MESSAGE_LENGTH) + "..." : s));
       }
-      message.append(String.format("\n%s", compareUrl));
+      message.append(String.format("%n%s", compareUrl));
 
       return message.toString();
     }
