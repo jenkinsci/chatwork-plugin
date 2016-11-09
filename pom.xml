@@ -95,12 +95,6 @@
             <version>2.3.10</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>co.freeside</groupId>
-            <artifactId>betamax</artifactId>
-            <version>1.1.2</version>
-            <scope>test</scope>
-        </dependency>
         <!-- Mandatory dependencies for using Spock -->
         <dependency>
             <groupId>org.spockframework</groupId>
