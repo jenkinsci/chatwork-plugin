@@ -66,7 +66,7 @@ public class ChatworkClient {
     CACHED_ROOMS.clear();
   }
 
-  private void post(String path, Map<String, String> params) throws IOException {
+  protected void post(String path, Map<String, String> params) throws IOException {
     PostMethod method = new PostMethod(API_URL + path);
 
     try {
@@ -93,7 +93,7 @@ public class ChatworkClient {
     }
   }
 
-  private String get(String path) throws IOException {
+  protected String get(String path) throws IOException {
     GetMethod method = new GetMethod(API_URL + path);
 
     try {

@@ -17,6 +17,7 @@ import hudson.util.VariableResolver;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
+import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.StaplerRequest;
@@ -232,7 +233,7 @@ public class ChatworkPublisher extends Publisher {
       variables.put("PAYLOAD_SUMMARY", analyzePayload(payloadJson));
     }
 
-    variables.put("BUILD_RESULT", build.getResult().toString());
+    variables.put("BUILD_RESULT", ObjectUtils.toString(build.getResult()));
 
     return variables;
   }
@@ -254,9 +255,9 @@ public class ChatworkPublisher extends Publisher {
       String repositoryName = json.getJSONObject("repository").getString("name");
       String pusher = pullRequest.getJSONObject("user").getString("login");
 
-      StringBuilder message = new StringBuilder().append(String.format("%s created Pull Request into %s,\n", pusher, repositoryName));
-      message.append(String.format("\n%s", title));
-      message.append(String.format("\n%s", url));
+      StringBuilder message = new StringBuilder().append(String.format("%s created Pull Request into %s,%n", pusher, repositoryName));
+      message.append(String.format("%n%s", title));
+      message.append(String.format("%n%s", url));
 
       return message.toString();
 
@@ -265,16 +266,16 @@ public class ChatworkPublisher extends Publisher {
 
       String pusher = json.getJSONObject("pusher").getString("name");
       String repositoryName = json.getJSONObject("repository").getString("name");
-      StringBuilder message = new StringBuilder().append(String.format("%s pushed into %s,\n", pusher, repositoryName));
+      StringBuilder message = new StringBuilder().append(String.format("%s pushed into %s,%n", pusher, repositoryName));
 
       JSONArray commits = json.getJSONArray("commits");
       int size = commits.size();
       for (int i = 0; i < size; i++) {
         JSONObject value = (JSONObject) commits.get(i);
         String s = value.getString("message");
-        message.append(String.format("- %s\n", (s.length() > MAX_COMMIT_MESSAGE_LENGTH) ? s.substring(0, MAX_COMMIT_MESSAGE_LENGTH) + "..." : s));
+        message.append(String.format("- %s%n", (s.length() > MAX_COMMIT_MESSAGE_LENGTH) ? s.substring(0, MAX_COMMIT_MESSAGE_LENGTH) + "..." : s));
       }
-      message.append(String.format("\n%s", compareUrl));
+      message.append(String.format("%n%s", compareUrl));
 
       return message.toString();
     }
@@ -291,14 +292,6 @@ public class ChatworkPublisher extends Publisher {
     return BuildStepMonitor.BUILD;
   }
 
-  /**
-   * Descriptor for {@link ChatworkPublisher}. Used as a singleton.
-   * The class is marked as public so that it can be accessed from views.
-   * <p/>
-   * <p/>
-   * See <tt>src/main/resource/com.vexus2.jenkins.chatwork.jenkinschatworkplugin/ChatworkPublisher/*.jelly</tt>
-   * for the actual HTML fragment for the configuration screen.
-   */
   @Extension
   // This indicates to Jenkins that this is an implementation of an extension point.
   public static final class DescriptorImpl extends BuildStepDescriptor<Publisher> {
