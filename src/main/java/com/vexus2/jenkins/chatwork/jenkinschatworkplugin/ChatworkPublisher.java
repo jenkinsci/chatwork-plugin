@@ -17,6 +17,7 @@ import hudson.util.VariableResolver;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
+import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.StaplerRequest;
@@ -232,7 +233,7 @@ public class ChatworkPublisher extends Publisher {
       variables.put("PAYLOAD_SUMMARY", analyzePayload(payloadJson));
     }
 
-    variables.put("BUILD_RESULT", build.getResult().toString());
+    variables.put("BUILD_RESULT", ObjectUtils.toString(build.getResult()));
 
     return variables;
   }
