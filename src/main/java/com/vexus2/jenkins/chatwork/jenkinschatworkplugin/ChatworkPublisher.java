@@ -399,7 +399,7 @@ public class ChatworkPublisher extends Publisher {
         for (Room room : rooms) {
           String displayName = "[" + room.type + "] ";
           if(room.name == null){
-            displayName += Messages.canceledUser();
+            displayName += Messages.cancelledUser();
           } else {
             displayName += EscapeUtil.sanitize(room.name);
           }
