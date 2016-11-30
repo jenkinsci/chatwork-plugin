@@ -14,6 +14,8 @@ public class RoomComparator implements Comparator<Room>, Serializable {
     }
 
     // 2nd sort key
-    return room1.name.compareTo(room2.name);
+    String name1 = StringUtils.stripToEmpty(room1.name);
+    String name2 = StringUtils.stripToEmpty(room2.name);
+    return name1.compareTo(name2);
   }
 }

@@ -397,7 +397,12 @@ public class ChatworkPublisher extends Publisher {
         Collections.sort(rooms, new RoomComparator());
 
         for (Room room : rooms) {
-          String displayName = "[" + room.type + "] " + EscapeUtil.sanitize(room.name);
+          String displayName = "[" + room.type + "] ";
+          if(room.name == null){
+            displayName += Messages.canceledUser();
+          } else {
+            displayName += EscapeUtil.sanitize(room.name);
+          }
           items.add(displayName, room.roomId);
         }
       } catch (IllegalArgumentException e){
