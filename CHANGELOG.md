@@ -1,11 +1,15 @@
 # Change Log
 
+## [chatwork-1.0.6](https://github.com/jenkinsci/chatwork-plugin/tree/chatwork-1.0.6) (2016-12-01)
+[Full Changelog](https://github.com/jenkinsci/chatwork-plugin/compare/chatwork-1.0.5...chatwork-1.0.6)
+
+**Merged pull requests:**
+
+- Fix NullPointerException when contains canceled user [\#33](https://github.com/jenkinsci/chatwork-plugin/pull/33) ([sue445](https://github.com/sue445))
+- Update parent version [\#32](https://github.com/jenkinsci/chatwork-plugin/pull/32) ([sue445](https://github.com/sue445))
+
 ## [chatwork-1.0.5](https://github.com/jenkinsci/chatwork-plugin/tree/chatwork-1.0.5) (2016-03-23)
 [Full Changelog](https://github.com/jenkinsci/chatwork-plugin/compare/chatwork-1.0.4...chatwork-1.0.5)
-
-**Closed issues:**
-
-- Sanitize username [\#30](https://github.com/jenkinsci/chatwork-plugin/issues/30)
 
 **Merged pull requests:**
 
@@ -20,10 +24,6 @@
 
 ## [chatwork-1.0.3](https://github.com/jenkinsci/chatwork-plugin/tree/chatwork-1.0.3) (2015-10-07)
 [Full Changelog](https://github.com/jenkinsci/chatwork-plugin/compare/chatwork-1.0.2...chatwork-1.0.3)
-
-**Fixed bugs:**
-
-- multibyte garbled [\#27](https://github.com/jenkinsci/chatwork-plugin/issues/27)
 
 **Merged pull requests:**
 
@@ -50,12 +50,6 @@
 ## [chatwork-1.0.0](https://github.com/jenkinsci/chatwork-plugin/tree/chatwork-1.0.0) (2015-03-07)
 [Full Changelog](https://github.com/jenkinsci/chatwork-plugin/compare/chatwork-0.6.2...chatwork-1.0.0)
 
-**Closed issues:**
-
-- even if proxysv is empty , disable proxy [\#17](https://github.com/jenkinsci/chatwork-plugin/issues/17)
-- sendMessage method makes parseInt error [\#16](https://github.com/jenkinsci/chatwork-plugin/issues/16)
-- Setting build result messages [\#9](https://github.com/jenkinsci/chatwork-plugin/issues/9)
-
 **Merged pull requests:**
 
 - tweak proxy config [\#20](https://github.com/jenkinsci/chatwork-plugin/pull/20) ([sue445](https://github.com/sue445))
@@ -71,11 +65,6 @@
 ## [chatwork-0.6.2](https://github.com/jenkinsci/chatwork-plugin/tree/chatwork-0.6.2) (2015-01-21)
 [Full Changelog](https://github.com/jenkinsci/chatwork-plugin/compare/chatwork-0.6.1...chatwork-0.6.2)
 
-**Closed issues:**
-
-- Support variable to room id [\#6](https://github.com/jenkinsci/chatwork-plugin/issues/6)
-- Write reference [\#4](https://github.com/jenkinsci/chatwork-plugin/issues/4)
-
 **Merged pull requests:**
 
 - Support variable to room id  [\#8](https://github.com/jenkinsci/chatwork-plugin/pull/8) ([sue445](https://github.com/sue445))
@@ -87,10 +76,6 @@
 
 ## [chatwork-0.5](https://github.com/jenkinsci/chatwork-plugin/tree/chatwork-0.5) (2015-01-13)
 [Full Changelog](https://github.com/jenkinsci/chatwork-plugin/compare/chatwork-0.3...chatwork-0.5)
-
-**Closed issues:**
-
-- travis ci -\> clouebees jenkins [\#1](https://github.com/jenkinsci/chatwork-plugin/issues/1)
 
 **Merged pull requests:**
 
