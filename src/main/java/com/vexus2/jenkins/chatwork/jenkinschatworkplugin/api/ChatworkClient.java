@@ -21,7 +21,7 @@ public class ChatworkClient {
   private final String proxySv;
   private final String proxyPort;
 
-  private static final String API_URL = "https://api.chatwork.com/v1";
+  private static final String API_URL = "https://api.chatwork.com/v2";
 
   private static final CachedResponse<List<Room>> CACHED_ROOMS = new CachedResponse<List<Room>>();
 
