@@ -1,5 +1,12 @@
 # Change Log
 
+## [chatwork-1.0.8](https://github.com/jenkinsci/chatwork-plugin/tree/chatwork-1.0.8) (2017-01-27)
+[Full Changelog](https://github.com/jenkinsci/chatwork-plugin/compare/chatwork-1.0.6...chatwork-1.0.8)
+
+**Merged pull requests:**
+
+- Update API version \(v2\) [\#34](https://github.com/jenkinsci/chatwork-plugin/pull/34) ([masanorythm](https://github.com/masanorythm))
+
 ## [chatwork-1.0.6](https://github.com/jenkinsci/chatwork-plugin/tree/chatwork-1.0.6) (2016-12-01)
 [Full Changelog](https://github.com/jenkinsci/chatwork-plugin/compare/chatwork-1.0.5...chatwork-1.0.6)
 
