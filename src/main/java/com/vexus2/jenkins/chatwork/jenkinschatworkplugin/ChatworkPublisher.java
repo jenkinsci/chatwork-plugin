@@ -13,6 +13,7 @@ import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Publisher;
 import hudson.util.ListBoxModel;
+import hudson.util.Secret;
 import hudson.util.VariableResolver;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONException;
@@ -297,10 +298,23 @@ public class ChatworkPublisher extends Publisher {
   public static final class DescriptorImpl extends BuildStepDescriptor<Publisher> {
     private static final Logger LOGGER = Logger.getLogger(DescriptorImpl.class.getName());
 
+    @Deprecated
     private String apikey;
 
+    @Deprecated
     public String getApikey() {
       return apikey;
+    }
+
+    private Secret secretApikey;
+
+    public Secret getSecretApikey() {
+      // for backward compatibility
+      if (StringUtils.isNotEmpty(apikey)) {
+        return Secret.fromString(apikey);
+      }
+
+      return secretApikey;
     }
 
     private String proxysv;
@@ -359,7 +373,10 @@ public class ChatworkPublisher extends Publisher {
 
     @Override
     public boolean configure(StaplerRequest req, JSONObject formData) throws FormException {
-      apikey = formData.getString("apikey");
+      // Save to only secretApikey and clear apikey(plain string)
+      secretApikey = Secret.fromString(formData.getString("secretApikey"));
+      apikey = null;
+
       proxysv = formData.getString("proxysv");
       proxyport = formData.getString("proxyport");
 
@@ -433,7 +450,7 @@ public class ChatworkPublisher extends Publisher {
     }
 
     private ChatworkClient getChatworkClient() {
-      return new ChatworkClient(apikey, proxysv, proxyport);
+      return new ChatworkClient(getSecretApikey().getPlainText(), proxysv, proxyport);
     }
 
     public void doClearCache(StaplerRequest req, StaplerResponse rsp){

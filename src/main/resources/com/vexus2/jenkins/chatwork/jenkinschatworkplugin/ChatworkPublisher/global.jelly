@@ -12,9 +12,9 @@
     so it should be straightforward to find them.
   -->
   <f:section title="Chatwork Plugin">
-    <f:entry title="API Key" field="apikey"
+    <f:entry title="API Key" field="secretApikey"
       description="Set your Chatwork API Key">
-      <f:textbox />
+      <f:password />
     </f:entry>
     <f:entry title="Proxy server" field="proxysv"
       description="Set your Proxy server">
