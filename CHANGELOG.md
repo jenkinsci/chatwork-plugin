@@ -1,5 +1,13 @@
 # Change Log
 
+## [chatwork-1.0.9](https://github.com/jenkinsci/chatwork-plugin/tree/chatwork-1.0.9) (2019-09-14)
+[Full Changelog](https://github.com/jenkinsci/chatwork-plugin/compare/chatwork-1.0.8...chatwork-1.0.9)
+
+**Merged pull requests:**
+
+- \[Security\] Save apiKey to Secret field instead of String field [\#36](https://github.com/jenkinsci/chatwork-plugin/pull/36) ([sue445](https://github.com/sue445))
+- Revived CI [\#35](https://github.com/jenkinsci/chatwork-plugin/pull/35) ([sue445](https://github.com/sue445))
+
 ## [chatwork-1.0.8](https://github.com/jenkinsci/chatwork-plugin/tree/chatwork-1.0.8) (2017-01-27)
 [Full Changelog](https://github.com/jenkinsci/chatwork-plugin/compare/chatwork-1.0.6...chatwork-1.0.8)
 
