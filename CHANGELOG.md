@@ -1,5 +1,11 @@
 # Change Log
 
+## [chatwork-1.0.9](https://github.com/jenkinsci/chatwork-plugin/tree/chatwork-1.0.10) (2019-10-09)
+[Full Changelog](https://github.com/jenkinsci/chatwork-plugin/compare/chatwork-1.0.9...chatwork-1.0.10)
+
+- Use HTTPS URLs in pom.xml
+  - https://github.com/jenkinsci/chatwork-plugin/pull/38
+
 ## [chatwork-1.0.9](https://github.com/jenkinsci/chatwork-plugin/tree/chatwork-1.0.9) (2019-09-14)
 [Full Changelog](https://github.com/jenkinsci/chatwork-plugin/compare/chatwork-1.0.8...chatwork-1.0.9)
 
