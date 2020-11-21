@@ -1,6 +1,6 @@
 # Jenkins Chatwork Plugin
 [![Plugin Version](https://img.shields.io/jenkins/plugin/v/chatwork.svg)](https://plugins.jenkins.io/chatwork)
-[![Build Status](https://ci.jenkins.io/buildStatus/icon?job=Plugins/chatwork-plugin/master)](https://ci.jenkins.io/job/Plugins/chatwork-plugin/master)
+[![Build Status](https://ci.jenkins.io/buildStatus/icon?job=Plugins/chatwork-plugin/master)](https://ci.jenkins.io/job/Plugins/job/chatwork-plugin/job/master/)
 
 This Plugin will notify the ChatWork any message.
 
