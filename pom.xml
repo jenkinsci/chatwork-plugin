@@ -133,7 +133,7 @@
                     <dependency>
                         <groupId>org.codehaus.gmaven.runtime</groupId>
                         <artifactId>gmaven-runtime-2.0</artifactId>
-                        <version>1.4</version>
+                        <version>1.5-jenkins-3</version>
                         <exclusions>
                             <exclusion>
                                 <groupId>org.codehaus.groovy</groupId>
