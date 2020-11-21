@@ -3,3 +3,4 @@ lib/
 target/
 work/
 jenkins-chatwork-plugin.iml
+release.properties
