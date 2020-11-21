@@ -9,6 +9,9 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+      day: "saturday"
+      time: "05:00"
+      timezone: "Asia/Tokyo"
     assignees:
       - "sue445"
     ignore:
