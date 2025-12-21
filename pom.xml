@@ -45,6 +45,11 @@
             <url>https://repo.jenkins-ci.org/public/</url>
         </repository>
 
+        <repository>
+            <id>atlassian-public</id>
+            <url>https://maven.atlassian.com/repository/public</url>
+        </repository>
+
         <!-- Only required if a snapshot version of Spock is used -->
         <repository>
             <id>spock-snapshots</id>
@@ -52,13 +57,6 @@
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
-        </repository>
-
-        <repository>
-            <id>atlassian-public</id>
-            <url>https://maven.atlassian.com/repository/public</url>
-            <snapshots><enabled>true</enabled></snapshots>
-            <releases><enabled>true</enabled></releases>
         </repository>
     </repositories>
 
