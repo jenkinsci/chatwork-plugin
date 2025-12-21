@@ -90,19 +90,6 @@
             <version>1.10.19</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
-            <version>3.0.22</version>
-            <scope>test</scope>
-        </dependency>
-        <!-- Mandatory dependencies for using Spock -->
-        <dependency>
-            <groupId>org.spockframework</groupId>
-            <artifactId>spock-core</artifactId>
-            <version>1.0-groovy-2.3</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <build>
