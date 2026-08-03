@@ -1,5 +1,6 @@
 package com.vexus2.jenkins.chatwork.jenkinschatworkplugin;
 
+import java.util.Objects;
 import com.vexus2.jenkins.chatwork.jenkinschatworkplugin.api.ChatworkClient;
 import com.vexus2.jenkins.chatwork.jenkinschatworkplugin.api.Room;
 import com.vexus2.jenkins.chatwork.jenkinschatworkplugin.api.RoomComparator;
@@ -18,8 +19,6 @@ import hudson.util.VariableResolver;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
-import org.apache.commons.lang.ObjectUtils;
-import org.apache.commons.lang.StringUtils;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.StaplerResponse;
@@ -60,13 +59,13 @@ public class ChatworkPublisher extends Publisher {
   @DataBoundConstructor
   public ChatworkPublisher(String rid, String defaultMessage, Boolean notifyOnSuccess, Boolean notifyOnFail, String unstableMessage, String notBuiltMessage, String abortedMessage, String successMessage, String failureMessage, Boolean notifyOnUnstable, Boolean notifyOnNotBuilt, Boolean notifyOnAborted) {
     this.rid = rid;
-    this.defaultMessage = StringUtils.trimToEmpty(defaultMessage);
+    this.defaultMessage = (defaultMessage == null ? "" : defaultMessage.trim());
 
-    this.successMessage   = StringUtils.trimToEmpty(successMessage);
-    this.failureMessage   = StringUtils.trimToEmpty(failureMessage);
-    this.unstableMessage  = StringUtils.trimToEmpty(unstableMessage);
-    this.notBuiltMessage  = StringUtils.trimToEmpty(notBuiltMessage);
-    this.abortedMessage   = StringUtils.trimToEmpty(abortedMessage);
+    this.successMessage   = (successMessage == null ? "" : successMessage.trim());
+    this.failureMessage   = (failureMessage == null ? "" : failureMessage.trim());
+    this.unstableMessage  = (unstableMessage == null ? "" : unstableMessage.trim());
+    this.notBuiltMessage  = (notBuiltMessage == null ? "" : notBuiltMessage.trim());
+    this.abortedMessage   = (abortedMessage == null ? "" : abortedMessage.trim());
 
     this.notifyOnSuccess  = notifyOnSuccess;
     this.notifyOnFail     = notifyOnFail;
@@ -187,7 +186,7 @@ public class ChatworkPublisher extends Publisher {
   private String resolveMessage() {
     String jobResultMessage = getJobResultMessage(build.getResult());
 
-    if(StringUtils.isBlank(jobResultMessage)){
+    if((jobResultMessage == null || jobResultMessage.trim().isEmpty())){
       String globalResultMessage = getDescriptor().getGlobalResultMessage(build.getResult());
       return resolve(globalResultMessage);
 
@@ -217,7 +216,7 @@ public class ChatworkPublisher extends Publisher {
   }
 
   private String resolve(String message) {
-    if(StringUtils.isBlank(message)){
+    if((message == null || message.trim().isEmpty())){
       return null;
     }
 
@@ -230,11 +229,11 @@ public class ChatworkPublisher extends Publisher {
 
     VariableResolver<String> buildVariableResolver = build.getBuildVariableResolver();
     String payloadJson = buildVariableResolver.resolve("payload");
-    if(StringUtils.isNotBlank(payloadJson)){
+    if((payloadJson != null && !payloadJson.trim().isEmpty())){
       variables.put("PAYLOAD_SUMMARY", analyzePayload(payloadJson));
     }
 
-    variables.put("BUILD_RESULT", ObjectUtils.toString(build.getResult()));
+    variables.put("BUILD_RESULT", java.util.Objects.toString(build.getResult()));
 
     return variables;
   }
@@ -310,7 +309,7 @@ public class ChatworkPublisher extends Publisher {
 
     public Secret getSecretApikey() {
       // for backward compatibility
-      if (StringUtils.isNotEmpty(apikey)) {
+      if ((apikey != null && !apikey.isEmpty())) {
         return Secret.fromString(apikey);
       }
 
@@ -437,7 +436,7 @@ public class ChatworkPublisher extends Publisher {
 
         // return my chat room id
         for(Room room : rooms){
-          if(StringUtils.equals(room.type, "my")){
+          if(Objects.equals(room.type, "my")){
             return room.roomId;
           }
         }
