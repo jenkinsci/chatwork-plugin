@@ -1,6 +1,5 @@
 package com.vexus2.jenkins.chatwork.jenkinschatworkplugin.api;
 
-import org.apache.commons.lang.time.DateUtils;
 
 import java.io.IOException;
 import java.util.Date;
@@ -14,7 +13,7 @@ public class CachedResponse<T> {
 
   public CachedResponse(){
     // default expiration is 5 minutes
-    this.expirationMilliseconds = 5 * DateUtils.MILLIS_PER_MINUTE;
+    this.expirationMilliseconds = 5 * 60 * 1000L;
   }
 
   public CachedResponse(long expirationMilliseconds){

@@ -1,11 +1,11 @@
 package com.vexus2.jenkins.chatwork.jenkinschatworkplugin.api;
 
+import java.util.Objects;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.ProxyHost;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
-import org.apache.commons.lang.StringUtils;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 
@@ -28,7 +28,7 @@ public class ChatworkClient {
   private final HttpClient httpClient = new HttpClient();
 
   public ChatworkClient(String apiKey, String proxySv, String proxyPort) {
-    if (StringUtils.isBlank(apiKey)) {
+    if ((apiKey == null || apiKey.trim().isEmpty())) {
       throw new IllegalArgumentException("API Key is blank");
     }
 
@@ -38,7 +38,7 @@ public class ChatworkClient {
   }
 
   public void sendMessage(String roomId, String message) throws IOException {
-    if (StringUtils.isEmpty(roomId)) {
+    if ((roomId == null || roomId.isEmpty())) {
       throw new IllegalArgumentException("Room ID is empty");
     }
 
@@ -118,7 +118,7 @@ public class ChatworkClient {
   }
 
   public boolean isEnabledProxy(){
-    if(StringUtils.isBlank(proxySv) || StringUtils.isBlank(proxyPort) || StringUtils.equals(proxySv, "NOPROXY")){
+    if((proxySv == null || proxySv.trim().isEmpty()) || (proxyPort == null || proxyPort.trim().isEmpty()) || Objects.equals(proxySv, "NOPROXY")){
       return false;
     }
 
