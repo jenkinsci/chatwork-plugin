@@ -4,6 +4,29 @@
 
 This Plugin will notify the ChatWork any message.
 
+### Requirements
+
+The next release requires Jenkins 2.555.3 or newer and a Jenkins-supported Java runtime (Java 21 or 25).
+Upgrade Jenkins before installing this version on an older controller.
+
+### Development
+
+Use Maven 3.9.6 or newer and JDK 21 or 25. Check the Java version reported by Maven:
+
+```sh
+mvn --version
+```
+
+If Maven uses a different JDK, set `JAVA_HOME` to your JDK 21 or 25 installation.
+Build the plugin and run the tests and static analysis:
+
+```sh
+mvn clean verify
+```
+
+The plugin archive is generated at `target/chatwork.hpi`.
+The [Jenkinsfile](Jenkinsfile) configures CI to test Linux with JDK 21 and 25, and Windows with JDK 21.
+
 ### Global Configuration
 
 ![](/docs/images/1.0.0-global-config.png)
