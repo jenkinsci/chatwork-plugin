@@ -14,11 +14,18 @@
     <url>https://github.com/jenkinsci/chatwork-plugin</url>
 
     <scm>
-        <connection>scm:git:ssh://git@github.com/jenkinsci/chatwork-plugin.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/jenkinsci/chatwork-plugin.git</developerConnection>
+        <connection>scm:git:https://github.com/jenkinsci/chatwork-plugin.git</connection>
+        <developerConnection>scm:git:git@github.com:jenkinsci/chatwork-plugin.git</developerConnection>
         <url>https://github.com/jenkinsci/chatwork-plugin.git</url>
         <tag>HEAD</tag>
     </scm>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
 
     <developers>
         <developer>
