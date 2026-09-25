@@ -6,7 +6,7 @@ This Plugin will notify the ChatWork any message.
 
 ### Requirements
 
-The next release requires Jenkins 2.555.3 or newer and a Jenkins-supported Java runtime (Java 21 or 25).
+The current release requires Jenkins 2.555.3 or newer and a Jenkins-supported Java runtime (Java 21 or 25).
 Upgrade Jenkins before installing this version on an older controller.
 
 ### Development
