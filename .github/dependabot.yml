@@ -14,7 +14,3 @@ updates:
       timezone: "Asia/Tokyo"
     assignees:
       - "sue445"
-    ignore:
-      - dependency-name: "org.jenkins-ci.*"
-      - dependency-name: "org.codehaus.groovy:groovy-all"
-      - dependency-name: "org.spockframework:spock-core"

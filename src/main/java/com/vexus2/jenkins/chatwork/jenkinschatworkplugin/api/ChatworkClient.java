@@ -1,13 +1,22 @@
 package com.vexus2.jenkins.chatwork.jenkinschatworkplugin.api;
 
 import java.util.Objects;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpStatus;
-import org.apache.commons.httpclient.ProxyHost;
-import org.apache.commons.httpclient.methods.GetMethod;
-import org.apache.commons.httpclient.methods.PostMethod;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.type.TypeReference;
+import org.apache.http.HttpHost;
+import org.apache.http.HttpStatus;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+import java.nio.charset.StandardCharsets;
+import java.util.stream.Collectors;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -25,7 +34,7 @@ public class ChatworkClient {
 
   private static final CachedResponse<List<Room>> CACHED_ROOMS = new CachedResponse<List<Room>>();
 
-  private final HttpClient httpClient = new HttpClient();
+  private HttpHost proxyHost;
 
   public ChatworkClient(String apiKey, String proxySv, String proxyPort) {
     if ((apiKey == null || apiKey.trim().isEmpty())) {
@@ -67,53 +76,33 @@ public class ChatworkClient {
   }
 
   protected void post(String path, Map<String, String> params) throws IOException {
-    PostMethod method = new PostMethod(API_URL + path);
-
-    try {
-      method.addRequestHeader("X-ChatWorkToken", apiKey);
-      method.addRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=UTF-8");
-
-      for(Map.Entry<String, String> entry : params.entrySet()) {
-        method.setParameter(entry.getKey(), entry.getValue());
-      }
-
-      if(isEnabledProxy()){
-        setProxyHost(proxySv, Integer.parseInt(proxyPort));
-      }
-
-      int statusCode = httpClient.executeMethod(method);
-
-      if (statusCode != HttpStatus.SC_OK) {
-        String response = method.getResponseBodyAsString();
-        throw new ChatworkException("Response is not valid. Check your API Key or Chatwork API status. response_code = " + statusCode + ", message =" + response);
-      }
-
-    } finally {
-      method.releaseConnection();
-    }
+    HttpPost request = new HttpPost(API_URL + path);
+    request.setEntity(new UrlEncodedFormEntity(params.entrySet().stream()
+        .map(entry -> new BasicNameValuePair(entry.getKey(), entry.getValue()))
+        .collect(Collectors.toList()), StandardCharsets.UTF_8));
+    execute(request);
   }
 
   protected String get(String path) throws IOException {
-    GetMethod method = new GetMethod(API_URL + path);
+    return execute(new HttpGet(API_URL + path));
+  }
 
-    try {
-      method.addRequestHeader("X-ChatWorkToken", apiKey);
+  private String execute(HttpRequestBase request) throws IOException {
+    request.setHeader("X-ChatWorkToken", apiKey);
+    if (isEnabledProxy()) {
+      setProxyHost(proxySv, Integer.parseInt(proxyPort));
+    }
+    request.setConfig(RequestConfig.custom().setProxy(proxyHost).build());
 
-      if(isEnabledProxy()){
-        setProxyHost(proxySv, Integer.parseInt(proxyPort));
-      }
-
-      int statusCode = httpClient.executeMethod(method);
-
+    try (CloseableHttpClient httpClient = HttpClients.createDefault();
+         CloseableHttpResponse response = httpClient.execute(request)) {
+      int statusCode = response.getStatusLine().getStatusCode();
+      String body = response.getEntity() == null ? ""
+          : EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
       if (statusCode != HttpStatus.SC_OK) {
-        String response = method.getResponseBodyAsString();
-        throw new ChatworkException("Response is not valid. Check your API Key or Chatwork API status. response_code = " + statusCode + ", message =" + response);
+        throw new ChatworkException("Response is not valid. Check your API Key or Chatwork API status. response_code = " + statusCode + ", message =" + body);
       }
-
-      return method.getResponseBodyAsString();
-
-    } finally {
-      method.releaseConnection();
+      return body;
     }
   }
 
@@ -134,6 +123,6 @@ public class ChatworkClient {
   }
 
   public void setProxyHost(String hostname, int port){
-    httpClient.getHostConfiguration().setProxyHost(new ProxyHost(hostname, port));
+    proxyHost = new HttpHost(hostname, port);
   }
 }
