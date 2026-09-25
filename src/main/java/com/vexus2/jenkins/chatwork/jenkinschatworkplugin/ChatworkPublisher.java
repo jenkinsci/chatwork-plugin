@@ -20,8 +20,8 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
 import org.kohsuke.stapler.DataBoundConstructor;
-import org.kohsuke.stapler.StaplerRequest;
-import org.kohsuke.stapler.StaplerResponse;
+import org.kohsuke.stapler.StaplerRequest2;
+import org.kohsuke.stapler.StaplerResponse2;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -75,7 +75,7 @@ public class ChatworkPublisher extends Publisher {
   }
 
   /**
-   * We'll use this from the <tt>config.jelly</tt>.
+   * We'll use this from the <code>config.jelly</code>.
    */
   public String getRid() {
     return rid;
@@ -371,7 +371,7 @@ public class ChatworkPublisher extends Publisher {
     }
 
     @Override
-    public boolean configure(StaplerRequest req, JSONObject formData) throws FormException {
+    public boolean configure(StaplerRequest2 req, JSONObject formData) throws FormException {
       // Save to only secretApikey and clear apikey(plain string)
       secretApikey = Secret.fromString(formData.getString("secretApikey"));
       apikey = null;
@@ -452,7 +452,7 @@ public class ChatworkPublisher extends Publisher {
       return new ChatworkClient(getSecretApikey().getPlainText(), proxysv, proxyport);
     }
 
-    public void doClearCache(StaplerRequest req, StaplerResponse rsp){
+    public void doClearCache(StaplerRequest2 req, StaplerResponse2 rsp){
       ChatworkClient.clearRoomCache();
     }
   }
